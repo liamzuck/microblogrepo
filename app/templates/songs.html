@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ user.username }}'s song list!</h1>
+    {% for song in songs %}
+    <div><p><b>{{ song.title }}</b> by {{ song.artist }}</p></div>
+    {% endfor %}
+{% endblock %}
