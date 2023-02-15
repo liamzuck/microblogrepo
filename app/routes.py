@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect
 from app import app
-from app.forms import LoginForm
+from app.forms import LoginForm, HouseForm
 
 @app.route('/')
 @app.route('/index')
@@ -32,3 +32,12 @@ def login():
             form.username.data, form.remember_me.data))
         return redirect(url_for('index'))
     return render_template('login.html', title='Sign In', form=form)
+
+@app.route('/willow', methods=['GET', 'POST'])
+def willow():
+    form = HouseForm()
+    if form.validate_on_submit():
+        flash('House {} posted for {}, for_sale={}'.format(
+            form.address.data, form.owner.data, form.for_sale.data))
+        return redirect(url_for('index'))
+    return render_template('willow.html', title='House Lising (Willow)', form=form)
