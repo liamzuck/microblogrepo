@@ -30,14 +30,14 @@ def login():
     if form.validate_on_submit():
         flash('Login requested for user {}, remember_me={}'.format(
             form.username.data, form.remember_me.data))
-        return redirect(url_for('index'))
+        return redirect('/index')
     return render_template('login.html', title='Sign In', form=form)
 
 @app.route('/willow', methods=['GET', 'POST'])
 def willow():
     form = HouseForm()
     if form.validate_on_submit():
-        flash('House {} posted for {}, for_sale={}'.format(
+        flash('House ({}) posted for {}. For Sale = {}'.format(
             form.address.data, form.owner.data, form.for_sale.data))
-        return redirect(url_for('index'))
+        return redirect('/index')
     return render_template('willow.html', title='House Lising (Willow)', form=form)
